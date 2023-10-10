@@ -3,6 +3,10 @@ cat bootstrap.c bootstrappable.c support.c > ../../tmpdir/out.c
 
 js js_to_c.js >> ../../tmpdir/out.c
 
+cp ELF-i386.hex2 ../../tmpdir
+cp libc-core.M1 ../../tmpdir
+cp x86_defs.M1 ../../tmpdir
+
 ./mk_clean
 cd ../../tmpdir/
 
