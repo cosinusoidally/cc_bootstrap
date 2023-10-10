@@ -28,3 +28,79 @@ Each commit in the chibicc repo incrementally adds new features to the compiler.
 
 Note I will be targeting i386 (same as boteicc) since my tcc_js bootstrap
 compiler is also i386.
+
+Quick description of js_to_c.js . It takes JS code like this:
+
+function real_main(argc, argv){
+  if (argc != 2) {
+    fputs("invalid number of arguments\n", stderr);
+    return 1;
+  }
+  fputs("# generated from real_main\n", stdout);
+  fputs(":FUNCTION_main\n", stdout);
+  fputs("mov_eax, %", stdout);
+  fputs_num(7, stdout);
+  fputs("\n", stdout);
+  fputs("ret\n", stdout);
+  return 0;
+}
+
+and translates it to C code like this:
+
+/* fn decls */
+int real_main(int argc, int  argv);
+/* declare globals */
+
+/* init globals */
+void init_globals(void) {
+}
+
+/* function real_main(argc, argv){ */
+int real_main(int argc, int  argv) {
+  if (argc != 2) {
+    fputs("invalid number of arguments\n", stderr);
+    return 1;
+  }
+  fputs("# generated from real_main\n", stdout);
+  fputs(":FUNCTION_main\n", stdout);
+  fputs("mov_eax, %", stdout);
+  fputs_num(7, stdout);
+  fputs("\n", stdout);
+  fputs("ret\n", stdout);
+  return 0;
+}
+
+In this case there are no global variables to initialise (hence init_globals is
+empty).
+
+More complete example is:
+
+var foo=v_malloc(10);
+
+function real_main(argc, argv){
+  var bar=100;
+  return bar;
+}
+
+Which becomes:
+
+/* fn decls */
+int real_main(int argc, int  argv);
+/* declare globals */
+int foo;
+
+/* init globals */
+void init_globals(void) {
+    foo=v_malloc(10);
+}
+
+
+/* function real_main(argc, argv){ */
+int real_main(int argc, int  argv) {
+  int bar=100;
+  return bar;
+}
+
+Basically initialisation of global variables are moved to an init function,
+function declarations are translated from JS style to C style, and the keyword
+"var" is replaced with "int".
