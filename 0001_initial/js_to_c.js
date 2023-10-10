@@ -86,8 +86,6 @@ for(var i=0;i<g.length;i++){
   }
 }
 
-print('#include "support.c"');
-print("");
 print("/* fn decls */");
 for(var i=0;i<decls.length;i++){
   print(decls[i]+";");
