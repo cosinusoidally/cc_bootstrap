@@ -1,8 +1,8 @@
 
 cat bootstrap.c bootstrappable.c support.c test.c > ../../tmpdir/out.c
 
-cd ../../tmpdir/
 ./mk_clean
+cd ../../tmpdir/
 
 cc_x86 out.c out_cc_x86.M1
 cat x86_defs.M1 libc-core.M1 out_cc_x86.M1 > out-0.M1
