@@ -1,0 +1,2 @@
+cd ../../tmpdir
+rm a.out main.c main.o test.sh tmp tmp.s

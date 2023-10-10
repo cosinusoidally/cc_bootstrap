@@ -3,8 +3,8 @@ assert() {
   expected="$1"
   input="$2"
 
-  ./chibicc "$input" > tmp.s || exit
-  gcc -static -o tmp tmp.s
+  ./a.out "$input" > tmp.s || exit
+  gcc -o tmp tmp.s
   ./tmp
   actual="$?"
 

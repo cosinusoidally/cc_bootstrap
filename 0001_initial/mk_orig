@@ -2,5 +2,5 @@ cp main.c ../../tmpdir/
 cp test.sh ../../tmpdir/
 cd ../../tmpdir
 rm a.out
-gcc -c main.c
+gcc main.c
 ./test.sh
