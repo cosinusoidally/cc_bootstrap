@@ -1,0 +1,6 @@
+cp main.c ../../tmpdir/
+cp test.sh ../../tmpdir/
+cd ../../tmpdir
+rm a.out
+gcc -c main.c
+./test.sh
