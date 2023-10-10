@@ -10,8 +10,8 @@ cp x86_defs.M1 ../../tmpdir
 ./mk_clean
 cd ../../tmpdir/
 
-cc_x86 out.c out_cc_x86.M1
-cat x86_defs.M1 libc-core.M1 out_cc_x86.M1 > out-0.M1
+cc_x86 out.c out.M1
+cat x86_defs.M1 libc-core.M1 out.M1 > out-0.M1
 M0 out-0.M1 out_-0.hex2
 cat ELF-i386.hex2 out-0.hex2 > out-0-0.hex2
 hex2-0 out-0-0.hex2 out.exe
