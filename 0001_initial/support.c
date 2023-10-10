@@ -1,6 +1,14 @@
 int real_main(int argc, int argv);
 void init_globals(void);
 
+int heap_size;
+int stack_size;
+char* heap;
+
+int esp;
+int ebp;
+int malloc_base;
+
 int ri32(int o){
   return 0;
 }
