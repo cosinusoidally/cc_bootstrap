@@ -10,7 +10,9 @@ int wi32(int o, int v){
 }
 
 int mk_argc_argv(int argc, int argv){
-  return 0;
+  int argc_argv=v_alloca(8);
+  wi32(argc_argv, argc);
+  return argc_argv;
 }
 
 void init_runtime(void){
