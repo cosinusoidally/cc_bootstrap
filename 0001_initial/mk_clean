@@ -1,2 +1,2 @@
 cd ../../tmpdir
-rm a.out main.c main.o test.sh tmp tmp.s
+rm a.out main.c main.o test.sh tmp tmp.s out-0-0.hex2 out-0.M1 out.exe
