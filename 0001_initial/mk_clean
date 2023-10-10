@@ -1,3 +1,4 @@
 cd ../../tmpdir
 rm ELF-i386.hex2 libc-core.M1
 rm a.out main.c main.o test.sh tmp tmp.s out-0-0.hex2 out-0.M1 out.exe
+rm out-0.hex2  out.c  out.M1  x86_defs.M1
