@@ -14,12 +14,34 @@ int v_alloca(int x) {
   return esp;
 }
 
+/* chars are signed but we want unsigned */
+int ri8(int o) {
+/*  int t=heap[a]; */
+  int o1=o>>2;
+  int s=o&3;
+  int v1;
+  int *h=heap;
+  v1=h[o1];
+  return (v1>>(s*8)) &0xFF;
+}
+
 int ri32(int o){
-  return 0;
+  return ((ri8(o+3)<<24) | (ri8(o+2)<<16) | (ri8(o+1)<<8) |ri8(o));
+}
+
+int wi8(int o,int v) {
+  heap[o]=v;
+  return;
 }
 
 int wi32(int o, int v){
-  return 0;
+  wi8(o,v&0xFF);
+  v=v>>8;
+  wi8(o+1,v&0xFF);
+  v=v>>8;
+  wi8(o+2,v&0xFF);
+  v=v>>8;
+  wi8(o+3,v&0xFF);
 }
 
 int mk_argc_argv(int argc, int argv){

@@ -1,5 +1,5 @@
 function real_main(argc, argv){
-  if (ri32(argc) != 2) {
+  if (argc != 2) {
     fputs("invalid number of arguments\n", stderr);
     return 1;
   }
