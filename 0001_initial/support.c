@@ -9,6 +9,11 @@ int esp;
 int ebp;
 int malloc_base;
 
+int v_alloca(int x) {
+  esp=esp-x;
+  return esp;
+}
+
 int ri32(int o){
   return 0;
 }
@@ -23,8 +28,14 @@ int mk_argc_argv(int argc, int argv){
   return argc_argv;
 }
 
-void init_runtime(void){
-  return;
+/* initialise the runtime */
+int init_runtime(void) {
+  heap_size=16*1024*1024;
+  stack_size=256*1024;
+  heap=malloc(heap_size);
+  esp=heap_size-4;
+  ebp=esp;
+  malloc_base=4;
 }
 
 int main(int argc, int argv){
