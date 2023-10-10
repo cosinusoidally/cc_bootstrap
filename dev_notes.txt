@@ -11,3 +11,20 @@ versions in tree I can see the diff between each with the diff utility (which I
 may port to JS too). There is method in my madness. I want this to eventually
 work on a win32 machine with no dependencies. Initially dev will be done on
 Linux.
+
+Status, not quite there. Got code partially ported to js_to_c dialect but need
+to fix a couple of things:
+
+passing of argv
+building the output of the number "compiler" with cc_x86
+run the compiler under JS to test that also works
+Get the compiler working when compiled with tcc and gcc
+
+At this point "compiler" is a bit of a strong word when all it does atm is
+generate an assembly language program that just returns a single. This is the
+same as the initial version of chibicc. From here chibicc is incremenetally
+grown until it can handle, expressions, blocks, local variables, functions etc.
+Each commit in the chibicc repo incrementally adds new features to the compiler.
+
+Note I will be targeting i386 (same as boteicc) since my tcc_js bootstrap
+compiler is also i386.
