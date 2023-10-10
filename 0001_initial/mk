@@ -1,5 +1,7 @@
 
-cat bootstrap.c bootstrappable.c support.c test.c > ../../tmpdir/out.c
+cat bootstrap.c bootstrappable.c support.c > ../../tmpdir/out.c
+
+js js_to_c.js >> ../../tmpdir/out.c
 
 ./mk_clean
 cd ../../tmpdir/
