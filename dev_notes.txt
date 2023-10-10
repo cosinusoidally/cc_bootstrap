@@ -1,0 +1,13 @@
+This file will be unstructured. I will use it to keep a diary of the dev process
+
+2023-10-10:
+
+Aim today is to get the intial commit from chibicc ported. I think I will have
+one directory per revision. I may merge together some commits into a single
+directory. This will lead to many versions of the compiler in tree but will mean
+that I won't have a hard dependency on git. I'll keep the main code in a single
+C file (chibicc splits it out at some point) just for simplicity. With separate
+versions in tree I can see the diff between each with the diff utility (which I
+may port to JS too). There is method in my madness. I want this to eventually
+work on a win32 machine with no dependencies. Initially dev will be done on
+Linux.
