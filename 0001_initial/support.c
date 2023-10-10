@@ -1,4 +1,8 @@
+int real_main(int argc, int argv);
+void init_globals(void);
+
 int main(int argc, int **argv){
-  puts("Hello world");
+  init_globals();
+  real_main(0,0);
   return 0;
 }
