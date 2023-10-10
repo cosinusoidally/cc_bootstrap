@@ -2,7 +2,7 @@
 
 cat bootstrap.c bootstrappable.c support_cc_x86.c support.c > ../../tmpdir/out.c
 
-# js js_to_c.js >> ../../tmpdir/out.c
+js js_to_c.js >> ../../tmpdir/out.c
 
 cp ELF-i386.hex2 ../../tmpdir
 cp libc-core.M1 ../../tmpdir
