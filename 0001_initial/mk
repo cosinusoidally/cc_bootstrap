@@ -16,3 +16,4 @@ M0 out-0.M1 out-0.hex2
 cat ELF-i386.hex2 out-0.hex2 > out-0-0.hex2
 hex2-0 out-0-0.hex2 out.exe
 
+./out.exe 42
