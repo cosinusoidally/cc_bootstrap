@@ -124,7 +124,8 @@ int init_runtime(void) {
   malloc_base=4;
 }
 
-int get_str_addr(int addr) {
+/* get real address of virtual heap address */
+int rptr(int addr) {
   return heap+addr;
 }
 

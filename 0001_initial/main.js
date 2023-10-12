@@ -6,7 +6,7 @@ function real_main(argc, argv){
   fputs("# generated from real_main\n", stdout);
   fputs(":FUNCTION_main\n", stdout);
   fputs("mov_eax, %", stdout);
-  fputs(get_str_addr(ri32(argv+4)), stdout);
+  fputs(rptr(ri32(argv+4)), stdout);
   fputs("\n", stdout);
   fputs("ret\n", stdout);
   return 0;
