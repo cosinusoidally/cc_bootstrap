@@ -117,6 +117,10 @@ int init_runtime(void) {
   malloc_base=4;
 }
 
+int get_str_addr(int addr) {
+  return heap+addr;
+}
+
 int main(int argc, int argv){
   init_globals();
   init_runtime();
