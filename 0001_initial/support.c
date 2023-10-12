@@ -96,11 +96,18 @@ int mk_argc_argv(int argc, int argv){
   int i=0;
   int ta;
   int vargv;
+  int argv_r;
   wi32(argc_argv, argc);
   for(i=0;i<argc; i=i+1){
     ta=mk_c_string(a[i]);
     vargv=v_alloca(4);
     wi32(vargv, ta);
+  }
+  int argv_r=vargv;
+  for(i=0;i<argc;i=i+1){
+    vargv=v_alloca(4);
+    wi32(vargv,ri32(argv_r));
+    argv_r=argv_r+4;
   }
   wi32(argc_argv, argc);
   wi32(argc_argv+4, vargv);
