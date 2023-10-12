@@ -16,4 +16,12 @@ M0 out-0.M1 out-0.hex2
 cat ELF-i386.hex2 out-0.hex2 > out-0-0.hex2
 hex2-0 out-0-0.hex2 out.exe
 
-./out.exe 42
+./out.exe 42 > out2.M1
+
+cat x86_defs.M1 libc-core.M1 out2.M1 > out2-0.M1
+M0 out2-0.M1 out2-0.hex2
+cat ELF-i386.hex2 out2-0.hex2 > out2-0-0.hex2
+hex2-0 out2-0-0.hex2 out2.exe
+
+./out2.exe
+echo $?

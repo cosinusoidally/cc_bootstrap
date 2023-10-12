@@ -9,5 +9,6 @@ function real_main(argc, argv){
   fputs(rptr(ri32(argv+4)), stdout);
   fputs("\n", stdout);
   fputs("ret\n", stdout);
+  fputs(":ELF_end\n", stdout);
   return 0;
 }
