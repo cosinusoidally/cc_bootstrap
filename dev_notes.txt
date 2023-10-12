@@ -104,3 +104,17 @@ int real_main(int argc, int  argv) {
 Basically initialisation of global variables are moved to an init function,
 function declarations are translated from JS style to C style, and the keyword
 "var" is replaced with "int".
+
+2023-10-12:
+
+Aim is to be able to do this ("cc_boot.c" is our compiler source code):
+
+cc_x86 cc_boot.c -o cc_boot1.exe
+cc_boot1.exe cc_boot.c -o cc_boot2.exe
+cc_boot2.exe cc_boot.c -o cc_boot3.exe
+
+and then have cc_boot2.exe and cc_boot3.exe be identical. This is known as a 3
+stage compiler bootstrap. If cc_boot2.exe and cc_boot3.exe differ then the
+compiler is either not self hosted, or it needs to rebuild itself one final
+time. cc_boot2.exe and cc_boot3.exe should converge to the same binary
+regardless of which compiler is used to compile  cc_boot1.exe.
