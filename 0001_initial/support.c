@@ -9,6 +9,12 @@ int esp;
 int ebp;
 int malloc_base;
 
+/* error functions */
+int err(void) {
+  puts("err");
+  exit(1);
+}
+
 int v_alloca(int x) {
   esp=esp-x;
   return esp;
@@ -44,9 +50,60 @@ int wi32(int o, int v){
   wi8(o+3,v&0xFF);
 }
 
+int v_malloc(int x) {
+/*  puts("unimpl malloc"); err(); */
+  int r=malloc_base;
+  if(x!=((x>>2)<<2)){
+    x=4+(x>>2) <<2;
+  }
+  malloc_base=malloc_base+x;
+  if(malloc_base>(heap_size-stack_size)){
+    puts("oom malloc");
+    err();
+  }
+  return r;
+}
+
+/* might not be needed? */
+/* this is just a dummy impl for now */
+int string_cache(int sc){
+/*  printf("sc: %d\n",sc); */
+  return 0;
+}
+
+int mk_c_string(char *s){
+/*  puts("unimpl mk_c_string"); */
+/*  printf("mk_c_string: %s\n",s); */
+  int sc=string_cache(s);
+  if(sc){
+    return sc;
+  }
+  int l=strlen(s);
+  int sh=v_malloc(l+1);
+  int i;
+/*  printf("strlen %d\n",l); */
+  for(i=0;i<l;i=i+1){
+    wi8(sh+i,s[i]);
+  }
+  wi8(sh+i,0);
+  return sh;
+}
+
+
 int mk_argc_argv(int argc, int argv){
   int argc_argv=v_alloca(8);
+  int *a=argv;
+  int i=0;
+  int ta;
+  int vargv;
   wi32(argc_argv, argc);
+  for(i=0;i<argc; i=i+1){
+    ta=mk_c_string(a[i]);
+    vargv=v_alloca(4);
+    wi32(vargv, ta);
+  }
+  wi32(argc_argv, argc);
+  wi32(argc_argv+4, vargv);
   return argc_argv;
 }
 
