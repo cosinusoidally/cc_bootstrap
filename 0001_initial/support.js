@@ -244,7 +244,6 @@ function mk_argc_argv(s){
   var argc;
   var argv;
   print("error");
-  s=s.split(" ");
   argc=s.length;
   print(JSON.stringify(s));
   while(s.length>0){
@@ -441,7 +440,7 @@ function init_runtime(){
 
 // need wrapper function for main since tcc_main is the real function name
 function main(argc,argv){
-    return tcc_main(argc, argv);
+    return real_main(argc, argv);
 }
 
 // need this alias as when we convert to C we can't use malloc as a function
