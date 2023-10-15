@@ -1,5 +1,7 @@
 print("loading support code");
 
+// load=loadRelativeToScript;
+
 var NULL=0;
 
 var heap_size=16*1024*1024;

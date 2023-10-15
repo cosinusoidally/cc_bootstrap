@@ -1,3 +1,4 @@
-load("main.js");
+loadRelativeToScript("support.js");
+loadRelativeToScript("main.js");
 
 print("blah");
