@@ -1,3 +1,6 @@
+load("support.js");
+
+
 function real_main(argc, argv){
   if (argc != 2) {
     fputs("invalid number of arguments\n", stderr);
