@@ -1,0 +1,36 @@
+./mk_clean
+
+cp ELF-i386.hex2 ../../tmpdir
+cp libc-core.M1 ../../tmpdir
+cp x86_defs.M1 ../../tmpdir
+
+cd ../../tmpdir
+
+run_js() {
+  js ../cc_bootstrap/0001_initial/test.js
+}
+
+assert() {
+  expected="$1"
+  input="$2"
+
+  run_js > out2.M1
+  cat x86_defs.M1 libc-core.M1 out2.M1 > out2-0.M1
+  M0 out2-0.M1 out2-0.hex2
+  cat ELF-i386.hex2 out2-0.hex2 > out2-0-0.hex2
+  hex2-0 out2-0-0.hex2 out2.exe
+  ./out2.exe
+  actual="$?"
+
+  if [ "$actual" = "$expected" ]; then
+    echo "$input => $actual"
+  else
+    echo "$input => $expected expected, but got $actual"
+    exit 1
+  fi
+}
+
+echo "testing under JS"
+
+assert 0 0
+assert 42 42

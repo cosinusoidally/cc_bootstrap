@@ -10,4 +10,3 @@ main(argc_argv.argc,argc_argv.argv);
 print=print_orig;
 
 print(vfs["stdout.txt"].map(function(x){return String.fromCharCode(x)}).join(""));
-
