@@ -36,5 +36,7 @@ assert() {
   fi
 }
 
+echo "testing under cc_x86"
+
 assert 0 0
 assert 42 42
