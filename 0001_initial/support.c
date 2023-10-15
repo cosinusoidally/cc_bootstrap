@@ -129,6 +129,10 @@ int rptr(int addr) {
   return heap+addr;
 }
 
+int v_fputs(int ptr, int stream) {
+  return fputs(heap+ptr, stream);
+}
+
 int main(int argc, int argv){
   init_globals();
   init_runtime();
