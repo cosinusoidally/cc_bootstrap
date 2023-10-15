@@ -1,20 +1,5 @@
+#!/bin/bash
 ./mk_clean
-
-cat bootstrap.c bootstrappable.c support_cc_x86.c support.c > ../../tmpdir/out.c
-
-js js_to_c.js >> ../../tmpdir/out.c
-
-cp ELF-i386.hex2 ../../tmpdir
-cp libc-core.M1 ../../tmpdir
-cp x86_defs.M1 ../../tmpdir
-
-cd ../../tmpdir/
-
-cc_x86 out.c out.M1
-cat x86_defs.M1 libc-core.M1 out.M1 > out-0.M1
-M0 out-0.M1 out-0.hex2
-cat ELF-i386.hex2 out-0.hex2 > out-0-0.hex2
-hex2-0 out-0-0.hex2 out.exe
 
 assert() {
   expected="$1"
@@ -36,7 +21,26 @@ assert() {
   fi
 }
 
+source ./tests.sh
+
+cat bootstrap.c bootstrappable.c support_cc_x86.c support.c > ../../tmpdir/out.c
+
+js js_to_c.js >> ../../tmpdir/out.c
+
+cp ELF-i386.hex2 ../../tmpdir
+cp libc-core.M1 ../../tmpdir
+cp x86_defs.M1 ../../tmpdir
+
+cd ../../tmpdir/
+
+cc_x86 out.c out.M1
+cat x86_defs.M1 libc-core.M1 out.M1 > out-0.M1
+M0 out-0.M1 out-0.hex2
+cat ELF-i386.hex2 out-0.hex2 > out-0-0.hex2
+hex2-0 out-0-0.hex2 out.exe
+
+
+
 echo "testing under cc_x86"
 
-assert 0 0
-assert 42 42
+run_tests

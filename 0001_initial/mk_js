@@ -1,15 +1,5 @@
 ./mk_clean
 
-cp ELF-i386.hex2 ../../tmpdir
-cp libc-core.M1 ../../tmpdir
-cp x86_defs.M1 ../../tmpdir
-
-cd ../../tmpdir
-
-run_js() {
-  js -e "arg='"$input"';load('../cc_bootstrap/0001_initial/test.js')"
-}
-
 assert() {
   expected="$1"
   input="$2"
@@ -30,8 +20,19 @@ assert() {
   fi
 }
 
+source ./tests.sh
+
+cp ELF-i386.hex2 ../../tmpdir
+cp libc-core.M1 ../../tmpdir
+cp x86_defs.M1 ../../tmpdir
+
+cd ../../tmpdir
+
+run_js() {
+  js -e "arg='"$input"';load('../cc_bootstrap/0001_initial/test.js')"
+}
+
+
 echo "testing under JS"
 
-assert 0 0
-assert 42 42
-assert 21 '5+20-4'
+run_tests
