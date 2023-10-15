@@ -394,7 +394,7 @@ function v_strdup(src){
   return dest;
 }
 
-load("sha256.js");
+// load("sha256.js");
 
 function decode_Sym(sym){
   s={};
