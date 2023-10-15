@@ -7,7 +7,7 @@ cp x86_defs.M1 ../../tmpdir
 cd ../../tmpdir
 
 run_js() {
-  js ../cc_bootstrap/0001_initial/test.js
+  js -e "arg='"$input"';load('../cc_bootstrap/0001_initial/test.js')"
 }
 
 assert() {
@@ -34,3 +34,4 @@ echo "testing under JS"
 
 assert 0 0
 assert 42 42
+assert 21 '5+20-4'
