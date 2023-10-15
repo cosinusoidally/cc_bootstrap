@@ -312,6 +312,10 @@ function v_fwrite(ptr, size, nmemb, stream){
   }
 }
 
+function v_fputs(ptr, stream){
+  return v_fwrite(ptr, v_strlen(ptr), 1, stream);
+}
+
 function v_memcmp(s1,s2,n){
 //print("memcmp "+to_hex(s1)+" "+to_hex(s2)+" "+n);
   var r=0;
@@ -465,3 +469,10 @@ function expect(msg){
   print(msg);
   err();
 }
+
+function rptr(x){
+  return x;
+}
+
+stdout=v_fopen(mk_c_string("stdout.txt"),mk_c_string("wb"));
+fputs=v_fputs;
