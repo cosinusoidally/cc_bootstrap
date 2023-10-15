@@ -16,12 +16,25 @@ M0 out-0.M1 out-0.hex2
 cat ELF-i386.hex2 out-0.hex2 > out-0-0.hex2
 hex2-0 out-0-0.hex2 out.exe
 
-./out.exe 42 > out2.M1
+assert() {
+  expected="$1"
+  input="$2"
 
-cat x86_defs.M1 libc-core.M1 out2.M1 > out2-0.M1
-M0 out2-0.M1 out2-0.hex2
-cat ELF-i386.hex2 out2-0.hex2 > out2-0-0.hex2
-hex2-0 out2-0-0.hex2 out2.exe
+  ./out.exe "$input" > out2.M1 || exit
+  cat x86_defs.M1 libc-core.M1 out2.M1 > out2-0.M1
+  M0 out2-0.M1 out2-0.hex2
+  cat ELF-i386.hex2 out2-0.hex2 > out2-0-0.hex2
+  hex2-0 out2-0-0.hex2 out2.exe
+  ./out2.exe
+  actual="$?"
 
-./out2.exe
-echo $?
+  if [ "$actual" = "$expected" ]; then
+    echo "$input => $actual"
+  else
+    echo "$input => $expected expected, but got $actual"
+    exit 1
+  fi
+}
+
+assert 0 0
+assert 42 42
